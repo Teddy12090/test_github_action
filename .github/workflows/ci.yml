@@ -29,4 +29,4 @@ jobs:
       - name: Run a one-line script
         env:
           SSS: ${{secrets.SSS}}
-        run: echo ${{SSS}}
+        run: echo ${{env.SSS}}
