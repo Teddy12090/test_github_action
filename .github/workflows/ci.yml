@@ -28,5 +28,5 @@ jobs:
       # Runs a single command using the runners shell
       - name: Run a one-line script
         env:
-          TAG: glc-live-${GITHUB_SHA::7}
+          TAG: glc-live-${{ GITHUB_SHA::7 }}
         run: echo $TAG
