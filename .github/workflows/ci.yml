@@ -27,7 +27,7 @@ jobs:
 
       - name: Set env
         run: |
-          echo "glc-live-${GITHUB_SHA::7}" >> $TAG
+          echo "glc-live-${GITHUB_SHA::7}" >> $IMAGE_TAG
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo $TAG
+        run: echo $IMAGE_TAG
