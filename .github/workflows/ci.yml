@@ -27,6 +27,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        env:
-          SSS: ${{secrets.SSS}}
-        run: echo ${{env.SSS}}
+        run: echo ${GITHUB_SHA::7}
