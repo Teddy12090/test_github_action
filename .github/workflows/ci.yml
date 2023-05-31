@@ -26,9 +26,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Set env
-        run: echo "tag=glc-live-${GITHUB_SHA::7}" >> $GITHUB_ENV
+        run: echo "HARBOR_TAG=glc-live-${GITHUB_SHA::7}" >> $GITHUB_ENV
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        env:
-          IMAGE_TAG: ${env.TAG}
-        run: echo $IMAGE_TAG
+        run: echo "hello"
