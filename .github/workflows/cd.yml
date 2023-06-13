@@ -25,55 +25,55 @@ jobs:
           echo ${GITHUB_REF}
           echo ${{github.ref}}
       - name: print 2
-        if: ${{ env.TRIGGERED_BY_TAG }}
+        if: ${{ env.TRIGGERED_BY_TAG == 'true' }}
         run: |
           echo "triggered by tag"
           echo "TARGET=${GITHUB_REF:10}" >> $GITHUB_ENV
       - name: print 3
-        if: ${{ !env.TRIGGERED_BY_TAG }}
+        if: ${{ env.TRIGGERED_BY_TAG == 'false' }}
         run: |
           echo "not triggered by tag"
           echo "TARGET=beta" >> $GITHUB_ENV
       - name: print target
         run: echo ${{env.TARGET}}
-      - run: echo CI $CI
-      - run: echo GITHUB_ACTION $GITHUB_ACTION
-      - run: echo GITHUB_ACTION_PATH $GITHUB_ACTION_PATH
-      - run: echo GITHUB_ACTION_REPOSITORY $GITHUB_ACTION_REPOSITORY
-      - run: echo GITHUB_ACTIONS $GITHUB_ACTIONS
-      - run: echo GITHUB_ACTOR $GITHUB_ACTOR
-      - run: echo GITHUB_ACTOR_ID $GITHUB_ACTOR_ID
-      - run: echo GITHUB_API_URL $GITHUB_API_URL
-      - run: echo GITHUB_BASE_REF $GITHUB_BASE_REF
-      - run: echo GITHUB_ENV $GITHUB_ENV
-      - run: echo GITHUB_EVENT_NAME $GITHUB_EVENT_NAME
-      - run: echo GITHUB_EVENT_PATH $GITHUB_EVENT_PATH
-      - run: echo GITHUB_GRAPHQL_URL $GITHUB_GRAPHQL_URL
-      - run: echo GITHUB_HEAD_REF $GITHUB_HEAD_REF
-      - run: echo GITHUB_JOB $GITHUB_JOB
-      - run: echo GITHUB_PATH $GITHUB_PATH
-      - run: echo GITHUB_REF $GITHUB_REF
-      - run: echo GITHUB_REF_NAME $GITHUB_REF_NAME
-      - run: echo GITHUB_REF_PROTECTED $GITHUB_REF_PROTECTED
-      - run: echo GITHUB_REF_TYPE $GITHUB_REF_TYPE
-      - run: echo GITHUB_REPOSITORY $GITHUB_REPOSITORY
-      - run: echo GITHUB_REPOSITORY_ID $GITHUB_REPOSITORY_ID
-      - run: echo GITHUB_REPOSITORY_OWNER $GITHUB_REPOSITORY_OWNER
-      - run: echo GITHUB_REPOSITORY_OWNER_ID $GITHUB_REPOSITORY_OWNER_ID
-      - run: echo GITHUB_RETENTION_DAYS $GITHUB_RETENTION_DAYS
-      - run: echo GITHUB_RUN_ATTEMPT $GITHUB_RUN_ATTEMPT
-      - run: echo GITHUB_RUN_ID $GITHUB_RUN_ID
-      - run: echo GITHUB_RUN_NUMBER $GITHUB_RUN_NUMBER
-      - run: echo GITHUB_SERVER_URL $GITHUB_SERVER_URL
-      - run: echo GITHUB_SHA $GITHUB_SHA
-      - run: echo GITHUB_STEP_SUMMARY $GITHUB_STEP_SUMMARY
-      - run: echo GITHUB_WORKFLOW $GITHUB_WORKFLOW
-      - run: echo GITHUB_WORKFLOW_REF $GITHUB_WORKFLOW_REF
-      - run: echo GITHUB_WORKFLOW_SHA $GITHUB_WORKFLOW_SHA
-      - run: echo GITHUB_WORKSPACE $GITHUB_WORKSPACE
-      - run: echo RUNNER_ARCH $RUNNER_ARCH
-      - run: echo RUNNER_DEBUG $RUNNER_DEBUG
-      - run: echo RUNNER_NAME $RUNNER_NAME
-      - run: echo RUNNER_OS $RUNNER_OS
-      - run: echo RUNNER_TEMP $RUNNER_TEMP
-      - run: echo RUNNER_TOOL_CACHE $RUNNER_TOOL_CACHE
+#      - run: echo CI $CI
+#      - run: echo GITHUB_ACTION $GITHUB_ACTION
+#      - run: echo GITHUB_ACTION_PATH $GITHUB_ACTION_PATH
+#      - run: echo GITHUB_ACTION_REPOSITORY $GITHUB_ACTION_REPOSITORY
+#      - run: echo GITHUB_ACTIONS $GITHUB_ACTIONS
+#      - run: echo GITHUB_ACTOR $GITHUB_ACTOR
+#      - run: echo GITHUB_ACTOR_ID $GITHUB_ACTOR_ID
+#      - run: echo GITHUB_API_URL $GITHUB_API_URL
+#      - run: echo GITHUB_BASE_REF $GITHUB_BASE_REF
+#      - run: echo GITHUB_ENV $GITHUB_ENV
+#      - run: echo GITHUB_EVENT_NAME $GITHUB_EVENT_NAME
+#      - run: echo GITHUB_EVENT_PATH $GITHUB_EVENT_PATH
+#      - run: echo GITHUB_GRAPHQL_URL $GITHUB_GRAPHQL_URL
+#      - run: echo GITHUB_HEAD_REF $GITHUB_HEAD_REF
+#      - run: echo GITHUB_JOB $GITHUB_JOB
+#      - run: echo GITHUB_PATH $GITHUB_PATH
+#      - run: echo GITHUB_REF $GITHUB_REF
+#      - run: echo GITHUB_REF_NAME $GITHUB_REF_NAME
+#      - run: echo GITHUB_REF_PROTECTED $GITHUB_REF_PROTECTED
+#      - run: echo GITHUB_REF_TYPE $GITHUB_REF_TYPE
+#      - run: echo GITHUB_REPOSITORY $GITHUB_REPOSITORY
+#      - run: echo GITHUB_REPOSITORY_ID $GITHUB_REPOSITORY_ID
+#      - run: echo GITHUB_REPOSITORY_OWNER $GITHUB_REPOSITORY_OWNER
+#      - run: echo GITHUB_REPOSITORY_OWNER_ID $GITHUB_REPOSITORY_OWNER_ID
+#      - run: echo GITHUB_RETENTION_DAYS $GITHUB_RETENTION_DAYS
+#      - run: echo GITHUB_RUN_ATTEMPT $GITHUB_RUN_ATTEMPT
+#      - run: echo GITHUB_RUN_ID $GITHUB_RUN_ID
+#      - run: echo GITHUB_RUN_NUMBER $GITHUB_RUN_NUMBER
+#      - run: echo GITHUB_SERVER_URL $GITHUB_SERVER_URL
+#      - run: echo GITHUB_SHA $GITHUB_SHA
+#      - run: echo GITHUB_STEP_SUMMARY $GITHUB_STEP_SUMMARY
+#      - run: echo GITHUB_WORKFLOW $GITHUB_WORKFLOW
+#      - run: echo GITHUB_WORKFLOW_REF $GITHUB_WORKFLOW_REF
+#      - run: echo GITHUB_WORKFLOW_SHA $GITHUB_WORKFLOW_SHA
+#      - run: echo GITHUB_WORKSPACE $GITHUB_WORKSPACE
+#      - run: echo RUNNER_ARCH $RUNNER_ARCH
+#      - run: echo RUNNER_DEBUG $RUNNER_DEBUG
+#      - run: echo RUNNER_NAME $RUNNER_NAME
+#      - run: echo RUNNER_OS $RUNNER_OS
+#      - run: echo RUNNER_TEMP $RUNNER_TEMP
+#      - run: echo RUNNER_TOOL_CACHE $RUNNER_TOOL_CACHE
