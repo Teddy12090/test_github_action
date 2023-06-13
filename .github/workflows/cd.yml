@@ -7,7 +7,7 @@ on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
-    tags: ["beta", "rc", "master"]
+    tags: [ "beta", "rc", "master" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -17,6 +17,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: print
+        run: echo ${GITHUB_REF}
       - run: echo CI $CI
       - run: echo GITHUB_ACTION $GITHUB_ACTION
       - run: echo GITHUB_ACTION_PATH $GITHUB_ACTION_PATH
