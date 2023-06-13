@@ -12,27 +12,30 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:
+  TRIGGERED_BY_TAG: ${{ github.ref == 'refs/tags/beta' || github.ref == 'refs/tags/rc'}}
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      TRIGGERED_BY_TAG: ${{ github.ref == 'refs/tags/beta' || github.ref == 'refs/tags/rc'}}
     steps:
       - name: print
         run: |
           echo ${GITHUB_REF}
           echo ${{github.ref}}
       - name: print 2
-        if: ${{env.TRIGGERED_BY_TAG}}
+        if: ${{ TRIGGERED_BY_TAG }}
         run: |
           echo "triggered by tag"
           echo "TARGET=${GITHUB_REF:10}" >> $GITHUB_ENV
       - name: print 3
-        if: ${{!env.TRIGGERED_BY_TAG}}
+        if: ${{ !TRIGGERED_BY_TAG }}
         run: |
           echo "not triggered by tag"
           echo "TARGET=beta" >> $GITHUB_ENV
+      - name: print target
+        run: echo ${{env.TARGET}}
       - run: echo CI $CI
       - run: echo GITHUB_ACTION $GITHUB_ACTION
       - run: echo GITHUB_ACTION_PATH $GITHUB_ACTION_PATH
