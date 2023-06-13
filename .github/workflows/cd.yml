@@ -24,16 +24,10 @@ jobs:
         run: |
           echo ${GITHUB_REF}
           echo ${{github.ref}}
-      - name: print 2
-        if: ${{ env.TRIGGERED_BY_TAG == 'true' }}
-        run: |
-          echo "triggered by tag"
-          echo "TARGET=${GITHUB_REF:10}" >> $GITHUB_ENV
-      - name: print 3
-        if: ${{ env.TRIGGERED_BY_TAG == 'false' }}
-        run: |
-          echo "not triggered by tag"
-          echo "TARGET=beta" >> $GITHUB_ENV
+      - if: ${{ env.TRIGGERED_BY_TAG == 'true' }}
+        run: echo "TARGET=${GITHUB_REF:10}" >> $GITHUB_ENV  # get substring after "refs/tags/" (10 character)
+      - if: ${{ env.TRIGGERED_BY_TAG == 'false' }}
+        run: echo "TARGET=beta" >> $GITHUB_ENV  # default update beta environment
       - name: print target
         run: echo ${{env.TARGET}}
 #      - run: echo CI $CI
