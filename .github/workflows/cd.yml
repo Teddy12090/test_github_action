@@ -71,3 +71,16 @@ jobs:
 #      - run: echo RUNNER_OS $RUNNER_OS
 #      - run: echo RUNNER_TEMP $RUNNER_TEMP
 #      - run: echo RUNNER_TOOL_CACHE $RUNNER_TOOL_CACHE
+  job2:
+    runs-on: self-hosted
+    steps:
+      - run: echo job2
+
+  job3:
+    runs-on: self-hosted
+    steps:
+      - run: echo job3
+  job4:
+    runs-on: self-hosted
+    steps:
+      - run: echo job4
