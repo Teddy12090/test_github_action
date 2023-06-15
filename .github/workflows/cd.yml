@@ -7,15 +7,12 @@ on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
-    tags: [ "beta", "rc", "master" ]
+    tags: [ "beta", "rc", "real" ]
   pull_request:
     branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
-env:
-  TRIGGERED_BY_TAG: ${{ startsWith(github.ref, 'refs/tags/') }}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -24,11 +21,12 @@ jobs:
     steps:
       - name: print
         run: |
-          echo ${GITHUB_REF}
-          echo ${{github.ref}}
-      - if: ${{ env.TRIGGERED_BY_TAG == 'true' }}
-        run: echo "TARGET=${GITHUB_REF:10}" >> $GITHUB_ENV  # get substring after "refs/tags/" (10 character)
-      - if: ${{ env.TRIGGERED_BY_TAG == 'false' }}
+          echo GITHUB_REF = ${GITHUB_REF}
+          echo github.ref = ${{github.ref}}
+          echo github.ref_type = ${{github.ref_type}}
+      - if: ${{ github.ref_type == 'tag' }}
+        run: echo "TARGET=${GITHUB_REF_NAME}" >> $GITHUB_ENV
+      - if: ${{ github.ref_type != 'tag' }}
         run: echo "TARGET=beta" >> $GITHUB_ENV  # default update beta environment
       - name: print target
         run: echo ${{env.TARGET}}
