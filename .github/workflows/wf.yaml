@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@v4
       - uses: ./
         with:
-          reviewers: '${{ github }}'
+          reviewers: 'Hi'
 
 #      - run: |
 #          for reviewer in ${{ github.event.pull_request.requested_reviewers }}; do
