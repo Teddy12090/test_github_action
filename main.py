@@ -2,11 +2,11 @@ import re
 import sys
 
 
-def main(api_url, repository, ref, token):
+def main(api_url, repository, pr_number, token):
     # https://docs.github.com/en/rest/pulls/review-requests?apiVersion=2022-11-28#get-all-requested-reviewers-for-a-pull-request
     # token = argv[0]
 
-    get_requested_reviewers_url = f"{api_url}/repos/{repository}/pulls/{ref}/requested_reviewers"
+    get_requested_reviewers_url = f"{api_url}/repos/{repository}/pulls/{pr_number}/requested_reviewers"
     print(get_requested_reviewers_url)
     # requests.get(reviewers)
     # print(len(api_url[0]))
@@ -19,8 +19,9 @@ if __name__ == "__main__":
     ref = sys.argv[3]
     github_token = sys.argv[4]
 
-    if match := re.match(r"refs/(pull/\d+)/merge", ref):
-        ref = match.group(1)
+    if match := re.match(r"^refs/pull/(\d+)/merge$", ref):
+        pr_number = match.group(1)
     else:
         sys.exit(0)  # not a pull request
-    main(api_url, repository, ref, github_token)
+
+    main(api_url, repository, pr_number, github_token)
