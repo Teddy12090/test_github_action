@@ -1,10 +1,10 @@
 name: 'Notify reviewers'
 description: 'Notify reviewers of a pull request'
-#inputs:
-#  reviewers:
-#    description: 'reviewers'
-#    required: true
-#    default: 'reviewers'
+inputs:
+  reviewers:
+    description: 'reviewers'
+    required: true
+    default: 'reviewers'
 #outputs:
 #  warnings:
 #    description: "Number of warnings raised if lint was successful"#name: "YAML file linter"
@@ -12,4 +12,4 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ github.event }}
+    - ${{ inputs.reviewers }}
