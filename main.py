@@ -1,6 +1,5 @@
+import re
 import sys
-
-import requests
 
 
 def main(api_url, repository, ref, token):
@@ -20,7 +19,8 @@ if __name__ == "__main__":
     ref = sys.argv[3]
     github_token = sys.argv[4]
 
-    if ref.endswith("/merge"):
-        ref = ref[len("/refs"):-len("/merge")]
+    if match := re.match(r"refs/(pull/\d+)/merge", ref):
+        ref = match.group(1)
+    else:
+        sys.exit(0)  # not a pull request
     main(api_url, repository, ref, github_token)
-
