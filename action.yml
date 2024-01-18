@@ -4,7 +4,7 @@ inputs:
   reviewers:
     description: 'reviewers'
     required: true
-    default: 'reviewers'
+    default: '${{github.sha}}'
 #outputs:
 #  warnings:
 #    description: "Number of warnings raised if lint was successful"#name: "YAML file linter"
