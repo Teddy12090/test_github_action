@@ -6,4 +6,4 @@ jobs:
     runs-on: ubuntu-latest
 #    if: ${{ github.event.requested_team.name == 'octo-team'}}
     steps:
-      - run: echo '${{ github.event }}'
+      - run: echo '${{ github.event.requested_reviewers }}'
