@@ -13,11 +13,9 @@ def main(api_url, repository, pr_number, token):
             "X-GitHub-Api-Version": "2022-11-28",
         },
     )
-    print(resp)
-    print(resp.text)
-    # https://docs.github.com/en/rest/pulls/review-requests?apiVersion=2022-11-28#get-all-requested-reviewers-for-a-pull-request
-    # print(len(api_url[0]))
-    # print(api_url)
+    resp.raise_for_status()
+    reviewers = [user["login"] for user in resp.json()["users"]]
+    print(reviewers)
 
 
 if __name__ == "__main__":
