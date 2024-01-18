@@ -1,14 +1,21 @@
 import re
 import sys
 
+import requests
+
 
 def main(api_url, repository, pr_number, token):
+    resp = requests.get(
+        f"{api_url}/repos/{repository}/pulls/{pr_number}/requested_reviewers",
+        headers={
+            "Accept": "application/vnd.github+json",
+            "Authorization": f"Bearer {token}",
+            "X-GitHub-Api-Version": "2022-11-28",
+        },
+    )
+    print(resp)
+    print(resp.text)
     # https://docs.github.com/en/rest/pulls/review-requests?apiVersion=2022-11-28#get-all-requested-reviewers-for-a-pull-request
-    # token = argv[0]
-
-    get_requested_reviewers_url = f"{api_url}/repos/{repository}/pulls/{pr_number}/requested_reviewers"
-    print(get_requested_reviewers_url)
-    # requests.get(reviewers)
     # print(len(api_url[0]))
     # print(api_url)
 

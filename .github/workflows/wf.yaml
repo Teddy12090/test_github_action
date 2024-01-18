@@ -9,11 +9,3 @@ jobs:
       - name: Check out repo's default branch
         uses: actions/checkout@v4
       - uses: ./
-#        with:
-#          reviewers: '${{github.sha}}'
-
-#      - run: |
-#          for reviewer in ${{ github.event.pull_request.requested_reviewers }}; do
-#            echo "$reviewer"
-#          done
-#      - run: echo  ${{ github.event.pull_request.requested_reviewers }}
