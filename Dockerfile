@@ -11,4 +11,5 @@ FROM gcr.io/distroless/python3-debian10
 COPY --from=builder /app /app
 WORKDIR /app
 ENV PYTHONPATH /app
-ENTRYPOINT ["/app/main.py"]
+
+ENTRYPOINT ["python","/app/main.py"]
