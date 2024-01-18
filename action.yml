@@ -5,20 +5,8 @@ inputs:
     description: 'reviewers'
     required: true
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
-
-#name: "YAML file linter"
-#description: "Lint a YAML file in your project"
-#inputs:
-#  name:
-#    required: false
-#    description: the person/thing you want to greet
-#    default: World
-#outputs:
-#  phrase:
-#    description: output message
-
+  warnings:
+    description: "Number of warnings raised if lint was successful"#name: "YAML file linter"
 runs:
   using: 'docker'
   image: 'Dockerfile'

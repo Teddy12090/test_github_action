@@ -11,6 +11,7 @@ jobs:
       - uses: ./
         with:
           reviewers: ${{ github.event }}
+
 #      - run: |
 #          for reviewer in ${{ github.event.pull_request.requested_reviewers }}; do
 #            echo "$reviewer"
