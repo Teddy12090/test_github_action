@@ -1,10 +1,18 @@
 name: 'Notify reviewers'
 description: 'Notify reviewers of a pull request'
 inputs:
-  token:
+  github-token:
     description: 'github token'
     required: true
     default: ${{ github.token }}
+  api-url:
+    description: 'github api url'
+    required: true
+    default: ${{ github.api_url }}
+  repository:
+    description: 'github repository'
+    required: true
+    default: ${{ github.repository }}
   ref:
     description: 'github ref'
     required: true
@@ -17,5 +25,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.reviewers }}
+    - ${{ inputs.api-url }}
+    - ${{ inputs.repository }}
     - ${{ inputs.ref }}
+    - ${{ inputs.github-token }}
