@@ -4,9 +4,9 @@ inputs:
   reviewers:
     description: 'reviewers'
     required: true
-#outputs:
-#  time: # id of output
-#    description: 'The time we greeted you'
+outputs:
+  time: # id of output
+    description: 'The time we greeted you'
 
 #name: "YAML file linter"
 #description: "Lint a YAML file in your project"
