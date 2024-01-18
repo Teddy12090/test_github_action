@@ -1,7 +1,7 @@
 FROM python:3-slim AS builder
 ADD . /app
 WORKDIR /app
-RUN pip install -r --target=/app requirements.txt
+RUN pip install --target=/app -r requirements.txt
 ## We are installing a dependency here directly into our app source dir
 #RUN pip install --target=/app requests
 
