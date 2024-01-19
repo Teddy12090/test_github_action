@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     #    if: ${{ github.event.requested_team.name == 'octo-team'}}
     steps:
-      - run: echo "${{ github.event.pull_request.requested_reviewers }}"
+      - run: echo "${{ toJson(github.event.pull_request.requested_reviewers) }}"
 #      - name: Check out repo's default branch
 #        uses: actions/checkout@v4
 #      - uses: ./
