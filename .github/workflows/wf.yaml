@@ -8,7 +8,7 @@ jobs:
     steps:
       - run: |
           echo "${{ toJson(github.event.pull_request.requested_reviewers) }}"
-          echo "${{ toJson(github.event.pull_request.requested_reviewers)[0] }}"
+          echo "${{ toJson(github.event.pull_request.requested_reviewers)[0].login != null }}"
 #      - name: Check out repo's default branch
 #        uses: actions/checkout@v4
 #      - uses: ./
