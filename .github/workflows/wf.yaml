@@ -6,6 +6,14 @@ jobs:
     runs-on: ubuntu-latest
     #    if: ${{ github.event.requested_team.name == 'octo-team'}}
     steps:
-      - run: |
-          echo "${{ toJson(github.event.pull_request.requested_reviewers) }}"
-          echo "${{ toJson(github.event.pull_request.requested_reviewers)[0].login != null }}"
+      - env:
+          requested_reviewers: ${{ toJson(github.event.pull_request.requested_reviewers) }}
+        run: |
+          echo $requested_reviewers
+          reviewers_count = $(echo $requested_reviewers | jq '. | length')
+          echo "::set-output name=result::$reviewers_count"
+        id: reviewers_count
+
+      - run:
+          echo ${{ steps.reviewers_count.outputs.result }}
+          echo ${{ steps.reviewers_count.outputs.result == 1 }}
