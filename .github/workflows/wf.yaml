@@ -17,3 +17,9 @@ jobs:
       - run:
           echo ${{ steps.reviewers_count.outputs.result }}
           echo ${{ steps.reviewers_count.outputs.result == 1 }}
+
+      - if: steps.reviewers_count.outputs.result == 1
+        run: echo "a"
+
+      - if: steps.reviewers_count.outputs.result != 2
+        run: echo "b"
