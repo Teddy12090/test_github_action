@@ -9,7 +9,7 @@ jobs:
       - env:
           requested_reviewers: ${{ toJson(github.event.pull_request.requested_reviewers) }}
         run: |
-          echo $requested_reviewers
+          echo "$requested_reviewers"
           reviewers_count = $(echo $requested_reviewers | jq '. | length')
           echo "::set-output name=result::$reviewers_count"
         id: reviewers_count
