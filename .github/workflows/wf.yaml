@@ -17,7 +17,10 @@ jobs:
     needs: check_review_requested_notification
     if: needs.check_review_requested_notification.outputs.should_skip != 'true'
     steps:
-      - run: echo "[${{ github.repository }}] Pull request review requested <${{ github.event.pull_request.html_url }}|#${{ github.event.pull_request.number }} ${{ github.event.pull_request.title }}> by <${{ github.event.pull_request.user.html_url }}|${{ github.event.pull_request.user.login }}>"
+      - run: |
+          echo "${{ env.GLC_BE_SLACK_URL }}"
+          echo "${{ var.GLC_BE_SLACK_URL }}"
+          echo "[${{ github.repository }}] Pull request review requested <${{ github.event.pull_request.html_url }}|#${{ github.event.pull_request.number }} ${{ github.event.pull_request.title }}> by <${{ github.event.pull_request.user.html_url }}|${{ github.event.pull_request.user.login }}>"
 #      - env:
 #          requested_reviewers: ${{ toJson(github.event.pull_request.requested_reviewers) }}
 #        run: |
