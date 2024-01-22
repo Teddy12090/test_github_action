@@ -1,0 +1,39 @@
+on:
+  pull_request:
+    types: [review_requested]
+jobs:
+  check_review_requested_notification:
+    runs-on: ubuntu-latest
+    outputs:
+      should_skip: ${{ steps.skip_check.outputs.should_skip }}
+    steps:
+      - id: skip_check
+        uses: fkirc/skip-duplicate-actions@v5
+        with:
+          concurrent_skipping: 'same_content_newer'
+
+  notify:
+    runs-on: ubuntu-latest
+    needs: check_review_requested_notification
+    if: needs.check_review_requested_notification.outputs.should_skip != 'true'
+    steps:
+      - run: |
+          echo "${{ vars.GLC_BE_SLACK_URL }}"
+          echo "[${{ github.repository }}] Pull request review requested <${{ github.event.pull_request.html_url }}|#${{ github.event.pull_request.number }} ${{ github.event.pull_request.title }}> by <${{ github.event.pull_request.user.html_url }}|${{ github.event.pull_request.user.login }}>"
+#      - env:
+#          requested_reviewers: ${{ toJson(github.event.pull_request.requested_reviewers) }}
+#        run: |
+#          echo "$requested_reviewers"
+#          reviewers_count=$(echo $requested_reviewers | jq '. | length')
+#          echo "::set-output name=result::$reviewers_count"
+#        id: reviewers_count
+#
+#      - run:
+#          echo ${{ steps.reviewers_count.outputs.result }}
+#          echo ${{ steps.reviewers_count.outputs.result == 1 }}
+#
+#      - if: steps.reviewers_count.outputs.result == 1
+#        run: echo "a"
+#
+#      - if: steps.reviewers_count.outputs.result >= 1
+#        run: echo "b"

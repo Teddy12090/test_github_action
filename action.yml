@@ -1,0 +1,31 @@
+name: 'Notify reviewers'
+description: 'Notify reviewers of a pull request'
+inputs:
+  github-token:
+    description: 'github token'
+    required: true
+    default: ${{ github.token }}
+  api-url:
+    description: 'github api url'
+    required: true
+    default: ${{ github.api_url }}
+  repository:
+    description: 'github repository'
+    required: true
+    default: ${{ github.repository }}
+  ref:
+    description: 'github ref'
+    required: true
+    default: ${{ github.ref }}
+
+#outputs:
+#  warnings:
+#    description: "Number of warnings raised if lint was successful"#name: "YAML file linter"
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.api-url }}
+    - ${{ inputs.repository }}
+    - ${{ inputs.ref }}
+    - ${{ inputs.github-token }}
